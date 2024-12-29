@@ -1424,7 +1424,7 @@ row.querySelector('.copy-ss1').addEventListener('click', () => {
 
       // Create previous button
       const prevButton = document.createElement('button');
-      prevButton.textContent = '<<';
+      prevButton.textContent = '◁';
       prevButton.onclick = () => updatePage(currentPage - 1);
       pagination.appendChild(prevButton);
 
@@ -1453,7 +1453,7 @@ row.querySelector('.copy-ss1').addEventListener('click', () => {
 
       // Create next button
       const nextButton = document.createElement('button');
-      nextButton.textContent = '>>';
+      nextButton.textContent = '▷';
       nextButton.onclick = () => updatePage(currentPage + 1);
       pagination.appendChild(nextButton);
     }
