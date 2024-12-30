@@ -1188,9 +1188,6 @@ function uuidv4() {
     const totalPages = Math.ceil(proxies.length / itemsPerPage);
     let currentPage = 1;
 
-// Objek untuk melacak jumlah proxy berdasarkan negara (id)
-  const countryCounter = {}; // Inisialisasi countryCounter
-
     function updatePage(page) {
       if (page < 1 || page > totalPages) return;
       currentPage = page;
@@ -1204,22 +1201,11 @@ function uuidv4() {
 
       // Render proxies for the current page
       pageProxies.forEach(proxy => {
-        const [ip, port, id, isp] = proxy.split(','); // Split the proxy data into individual parts
+        const [ip, port, id, isp] = proxy.split(',');      const path = `/kere${start + index + 1}`; // Menambahkan path /kere1, /kere2, ...
+
         
+        // Split the proxy data into individual parts
         
-        // Cek apakah counter negara sudah ada, jika belum buat baru
-      if (!countryCounter[id]) {
-        countryCounter[id] = 0;
-      }
-      // Increment counter untuk negara tersebut
-      countryCounter[id]++;
-
-      const cons = countryCounter[id]; // Angka urut berdasarkan negara (id)
-
-const path1 = `${path2}`;  // id + cons
-const path2 = `${id}${port}${cons}`;  // id + port + cons
-
-
         // Set placeholder values (you can modify this to extract from proxy data if available)
         const wildcard = '';
         const vlessTls = '';
@@ -1297,7 +1283,7 @@ const path2 = `${id}${port}${cons}`;  // id + port + cons
         row.querySelector('.copy-vless').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.kere.us.kg";
     const domain = selectedService === "user.kere.us.kg" ? "user.kere.us.kg" : `${selectedService}.user.kere.us.kg`;
-    const VLESS = `vless://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${path2}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+    const VLESS = `vless://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${path}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
     navigator.clipboard.writeText(VLESS);
     Swal.fire({
       title: 'Berhasil!',
@@ -1327,7 +1313,7 @@ row.querySelector('.copy-vless-clash').addEventListener('click', () => {
     network: ws
     servername: ${domain}
     ws-opts:
-      path: /${path2}
+      path: /${path}
       headers:
         Host: ${domain}`;
     navigator.clipboard.writeText(VLESSC);
@@ -1347,7 +1333,7 @@ row.querySelector('.copy-vless-clash').addEventListener('click', () => {
 row.querySelector('.copy-trojan').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.kere.us.kg";
     const domain = selectedService === "user.kere.us.kg" ? "user.kere.us.kg" : `${selectedService}.user.kere.us.kg`;
-    const TROJAN = `trojan://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${path2}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+    const TROJAN = `trojan://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${path}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
     navigator.clipboard.writeText(TROJAN);
     Swal.fire({
       title: 'Berhasil!',
@@ -1374,7 +1360,7 @@ row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
     sni: ${domain}
     network: ws
     ws-opts:
-      path: /${path2}
+      path: /${path}
       headers:
         Host: ${domain}
     udp: true `;
@@ -1395,7 +1381,7 @@ row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
 row.querySelector('.copy-ss').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.kere.us.kg";
     const domain = selectedService === "user.kere.us.kg" ? "user.kere.us.kg" : `${selectedService}.user.kere.us.kg`;
-    const SS = `ss://bm9uZTo1ZDJlYmQyYS05Y2I5LTRkMWItYWY1NS04NjE3ZDNlODFmMzk%3D@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${path2}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+    const SS = `ss://bm9uZTo1ZDJlYmQyYS05Y2I5LTRkMWItYWY1NS04NjE3ZDNlODFmMzk%3D@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${path}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
     navigator.clipboard.writeText(SS);
     Swal.fire({
       title: 'Berhasil!',
